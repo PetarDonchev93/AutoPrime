@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Prime - Recovery and Services Ireland</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        header {
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #2E7D32;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background: #4CAF50;
+            border-radius: 5px;
+        }
+        .hero {
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            background: #4CAF50;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin: 20px 0 40px;
+        }
+        .hero button {
+            background: #2E7D32;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .hero button:hover {
+            background: #1B5E20;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: none;
+        }
+        .container.active {
+            display: block;
+        }
+        .section {
+            background: #fff;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        .section a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .section a:hover {
+            text-decoration: underline;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        form button {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background: #2E7D32;
+        }
+        .cost-display {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e8f5e9;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            color: #2E7D32;
+        }
+        footer {
+            background: linear-gradient(to right, #4CAF50, #2E7D32);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.container').forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                console.error(`Section with ID '${sectionId}' not found.`);
+            }
+        }
+
+        function updateEstimatedCost() {
+            const kilometers = document.getElementById('kilometers').value;
+            const baseCost = 100;
+            const perKmCost = 1;
+            const estimatedCost = kilometers ? baseCost + (kilometers * perKmCost) : baseCost;
+            document.getElementById('cost-display').innerText = `Estimated Recovery Cost: €${estimatedCost}`;
+        }
+
+        function submitRecoveryRequest(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const destination = document.getElementById('destination').value;
+            const kilometers = document.getElementById('kilometers').value;
+            const baseCost = 100;
+            const perKmCost = 1;
+            const estimatedCost = kilometers ? baseCost + (kilometers * perKmCost) : baseCost;
+
+            const emailBody = `Recovery Request Details:\n\nName: ${name}\nPhone: ${phone}\nPickup Address: ${address}\nDestination Address: ${destination}\nDistance: ${kilometers} km\nEstimated Cost: €${estimatedCost}`;
+
+            window.location.href = `mailto:autoprimeservicesolution@gmail.com?subject=Recovery Request&body=${encodeURIComponent(emailBody)}`;
+        }
+
+        function submitSellForm(event) {
+            event.preventDefault();
+            const make = document.getElementById('car-make').value;
+            const model = document.getElementById('car-model').value;
+            const year = document.getElementById('car-year').value;
+            const licensePlate = document.getElementById('license-plate').value;
+            const condition = document.getElementById('car-condition').value;
+            const emailBody = `Car Make: ${make}\nCar Model: ${model}\nYear: ${year}\nLicense Plate: ${licensePlate}\nCondition: ${condition}`;
+            window.location.href = `mailto:autoprimeservicesolution@gmail.com?subject=Sell Your Car Request&body=${encodeURIComponent(emailBody)}`;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Auto Prime - Recovery and Services Ireland</h1>
+        <p>Your trusted partner for car recovery and sales services.</p>
+    </header>
+    <nav>
+        <a href="javascript:void(0)" onclick="showSection('recovery-section')">Request Recovery</a>
+        <a href="javascript:void(0)" onclick="showSection('sell-section')">Sell Your Car</a>
+        <a href="javascript:void(0)" onclick="showSection('about-section')">About Us</a>
+        <a href="javascript:void(0)" onclick="showSection('contact-section')">Contact</a>
+    </nav>
+    <div class="hero">
+        <h1>Fast & Reliable Recovery</h1>
+        <p>We specialize in vehicle recovery and car sales services across Ireland.</p>
+        <button onclick="showSection('recovery-section')">Request Recovery Now</button>
+    </div>
+    <div id="recovery-section" class="container active">
+        <section class="section">
+            <h2>Request Recovery</h2>
+            <p>Fill out the form below to request a recovery. The minimum cost is €100, with an additional €1 per kilometer.</p>
+            <form onsubmit="submitRecoveryRequest(event)">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+                <label for="address">Pickup Address:</label>
+                <input type="text" id="address" name="address" placeholder="Pickup Address" required>
+
+                <label for="destination">Destination Address:</label>
+                <input type="text" id="destination" name="destination" placeholder="Destination Address" required>
+
+                <label for="kilometers">Enter Distance (km):</label>
+                <input type="number" id="kilometers" name="kilometers" placeholder="e.g., 50" oninput="updateEstimatedCost()" required>
+
+                <div id="cost-display" class="cost-display">Estimated Recovery Cost: €100</div>
+                <button type="submit">Submit Request</button>
+            </form>
+        </section>
+    </div>
+    <div id="sell-section" class="container">
+        <section class="section">
+            <h2>Sell Your Car</h2>
+            <p>Have a car to sell? Submit your details below, and we’ll provide a free quote and arrange the sale.</p>
+            <form onsubmit="submitSellForm(event)">
+                <label for="car-make">Car Make:</label>
+                <input type="text" id="car-make" name="car-make" required>
+
+                <label for="car-model">Car Model:</label>
+                <input type="text" id="car-model" name="car-model" required>
+
+                <label for="car-year">Year:</label>
+                <input type="number" id="car-year" name="car-year" required>
+
+                <label for="license-plate">License Plate:</label>
+                <input type="text" id="license-plate" name="license-plate" required>
+
+                <label for="car-condition">Condition:</label>
+                <textarea id="car-condition" name="car-condition" rows="4" placeholder="e.g., Excellent, Good, Needs Repair" required></textarea>
+
+                <button type="submit">Submit Your Car</button>
+            </form>
+        </section>
+    </div>
+    <div id="about-section" class="container">
+        <section class="section">
+            <h2>About Us</h2>
+            <p>At Auto Prime, we are passionate about delivering exceptional services. Though we’re a new company, we focus on reliability and customer satisfaction, ensuring every interaction builds trust.</p>
+        </section>
+    </div>
+    <div id="contact-section" class="container">
+        <section class="section">
+            <h2>Contact Us</h2>
+            <p>Need assistance? Contact us today:</p>
+            <ul>
+                <li>Phone: <a href="tel:+353877177179">087 717 7179</a></li>
+                <li>Email: <a href="mailto:autoprimeservicesolution@gmail.com">autoprimeservicesolution@gmail.com</a></li>
+                <li>Address: Dublin, Ireland</li>
+            </ul>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 Auto Prime - All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
